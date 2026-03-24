@@ -13,26 +13,27 @@ export default function SignInPage() {
     })
   }, [])
 
-  const handleCheckin = async (catId) => {
+  const handleCheckin = (catId) => {
     if (cooldowns[catId]) return
 
-    // Phase 1: "Done!" overlay
+    // Phase 1: "Done!" overlay immediately
     setCooldowns(prev => ({ ...prev, [catId]: 'done' }))
     setDoneIds(prev => ({ ...prev, [catId]: Date.now() }))
 
-    // Write to Supabase
-    await addCheckin(catId)
-    await addLog('checkin', catId)
-
-    // Phase 2: after 1.2s, switch to cooldown state
+    // Phase 2: after 1.2s, switch to cooldown bar
     setTimeout(() => {
       setCooldowns(prev => ({ ...prev, [catId]: 'cooldown' }))
     }, 1200)
 
-    // Phase 3: fully release
+    // Phase 3: fully release — always fires regardless of Supabase
+    const cooldownMs = settings.checkin_cooldown || 5000
     setTimeout(() => {
       setCooldowns(prev => ({ ...prev, [catId]: null }))
-    }, settings.checkin_cooldown)
+    }, cooldownMs)
+
+    // Fire-and-forget: write to Supabase in background
+    addCheckin(catId).catch(err => console.error('checkin failed:', err))
+    addLog('checkin', catId).catch(err => console.error('log failed:', err))
   }
 
   return (
