@@ -53,13 +53,15 @@ ALTER TABLE ratings  ENABLE ROW LEVEL SECURITY;
 ALTER TABLE logs     ENABLE ROW LEVEL SECURITY;
 ALTER TABLE settings ENABLE ROW LEVEL SECURITY;
 
--- Checkins: anyone can insert and read
+-- Checkins: anyone can insert, read, and delete (admin removes)
 CREATE POLICY "Allow insert checkins" ON checkins FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow read checkins"   ON checkins FOR SELECT USING (true);
+CREATE POLICY "Allow delete checkins" ON checkins FOR DELETE USING (true);
 
--- Ratings: anyone can insert and read
+-- Ratings: anyone can insert, read, and delete
 CREATE POLICY "Allow insert ratings" ON ratings FOR INSERT WITH CHECK (true);
 CREATE POLICY "Allow read ratings"   ON ratings FOR SELECT USING (true);
+CREATE POLICY "Allow delete ratings" ON ratings FOR DELETE USING (true);
 
 -- Logs: anyone can insert and read
 CREATE POLICY "Allow insert logs" ON logs FOR INSERT WITH CHECK (true);
