@@ -20,13 +20,15 @@ export default function SignInPage() {
     setCooldowns(prev => ({ ...prev, [catId]: 'done' }))
     setDoneIds(prev => ({ ...prev, [catId]: Date.now() }))
 
-    // Phase 2: after 1.2s, switch to cooldown bar
+    const cooldownMs = settings.checkin_cooldown || 5000
+    const donePhase = Math.min(1200, cooldownMs * 0.4) // done overlay = 40% of cooldown, max 1.2s
+
+    // Phase 2: switch to cooldown bar
     setTimeout(() => {
       setCooldowns(prev => ({ ...prev, [catId]: 'cooldown' }))
-    }, 1200)
+    }, donePhase)
 
-    // Phase 3: fully release — always fires regardless of Supabase
-    const cooldownMs = settings.checkin_cooldown || 5000
+    // Phase 3: fully release
     setTimeout(() => {
       setCooldowns(prev => ({ ...prev, [catId]: null }))
     }, cooldownMs)
@@ -269,8 +271,7 @@ export default function SignInPage() {
                     style={{
                       height: '100%',
                       background: '#fff',
-                      animation: `cooldownBar ${settings.checkin_cooldown - 1200}ms linear forwards`,
-                    }}
+                        animation: `cooldownBar ${(settings.checkin_cooldown || 5000) * 0.6}ms linear forwards`,                    }}
                   />
                 </div>
               )}
