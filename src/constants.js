@@ -10,7 +10,7 @@ export const CATEGORIES = [
   },
   {
     id: 'snap',
-    name: 'Snap Connects',
+    name: 'Snap Circuits',
     emoji: '🔌',
     color: '#0066FF',
     gradient: 'linear-gradient(135deg, #0055DD 0%, #3399FF 100%)',
