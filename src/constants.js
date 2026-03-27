@@ -33,7 +33,7 @@ export const CATEGORIES = [
     emoji: '🔋',
     color: '#9C27B0',
     gradient: 'linear-gradient(135deg, #7B1FA2 0%, #CE93D8 100%)',
-    defaultImage: '/images/circ.png',
+    defaultImage: '/images/circ.jpg',
     desc: 'Sculpt & power up',
   },
   {
