@@ -146,7 +146,7 @@ export default function CheckoutPage() {
                     boxShadow: active ? '0 6px 28px rgba(255,180,0,0.2)' : 'none',
                   }}
                 >
-                  {active ? '⭐' : '☆'}
+                  {active ? '⭐' : '⭐'}
                 </button>
               )
             })}
