@@ -99,7 +99,8 @@ export default function SignInPage() {
               disabled={isBlocked}
               onClick={() => handleCheckin(cat.id)}
               style={{
-                flex: 1,
+                flex: cat.isWelcome ? 0 : 1,
+                minHeight: cat.isWelcome ? 100 : 160,
                 width: '100%',
                 border: 'none',
                 borderRadius: 24,

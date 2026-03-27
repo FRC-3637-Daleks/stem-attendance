@@ -1,5 +1,15 @@
 export const CATEGORIES = [
   {
+    id: 'hello',
+    name: 'Welcome!',
+    emoji: '👋',
+    color: '#FF9500',
+    gradient: 'linear-gradient(135deg, #FF9500 0%, #FFCC00 100%)',
+    defaultImage: '/images/hello.jpg',
+    desc: 'Tap here first to check in',
+    isWelcome: true,
+  },
+  {
     id: 'lego',
     name: 'Lego',
     emoji: '🧱',
@@ -16,6 +26,15 @@ export const CATEGORIES = [
     gradient: 'linear-gradient(135deg, #0055DD 0%, #3399FF 100%)',
     defaultImage: '/images/snap.jpg',
     desc: 'Snap & connect circuits',
+  },
+  {
+    id: 'squishy',
+    name: 'Squishy Circuits',
+    emoji: '🔋',
+    color: '#9C27B0',
+    gradient: 'linear-gradient(135deg, #7B1FA2 0%, #CE93D8 100%)',
+    defaultImage: '/images/circ.png',
+    desc: 'Sculpt & power up',
   },
   {
     id: 'vex',
